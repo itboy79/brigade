@@ -15,16 +15,25 @@ A multi-agent build orchestrator, packaged as a [Claude Code skill](https://docs
 
 **One head that predicts. Many arms that act. Nothing diverges unreviewed.**
 
-- 🧠 **The Head** — a strong model that scouts the codebase, splits the task
-  into self-contained briefs, and *never writes the implementation itself*.
-- 🐙 **The Arms** — parallel executors (cheaper/faster models, **any
-  provider**: Anthropic, OpenAI-compatible, Ollama), isolated in git
-  worktrees when needed.
-- 🔍 **The Reviewer** — a fresh-context judge that reads the *real diff* and
-  executes the acceptance criteria. Approves, or sends the work back to the
-  *same* executor (context preserved) for up to 2 revision rounds.
-- ✅ **The Head, again** — final end-to-end check: build, test, integrate,
-  clean up.
+> *A chef is essential in the kitchen. But putting him on dish duty or
+> peeling potatoes is a waste — of talent, and of budget. Rehoboam runs your
+> codebase like a professional kitchen: the chef writes the menu, the brigade
+> cooks, and nothing leaves the pass untasted.*
+>
+> — the Crypto Chef 👨‍🍳
+
+- 🧠 **The Head** — *the executive chef.* A strong model that scouts the
+  codebase, designs the menu, splits the task into self-contained briefs —
+  and **never peels the potatoes**: it doesn't write the implementation
+  itself.
+- 🐙 **The Arms** — *the brigade.* Parallel line cooks (cheaper/faster
+  models, **any provider**: Anthropic, OpenAI-compatible, Ollama), each on
+  its own station, isolated in git worktrees when needed.
+- 🔍 **The Reviewer** — *the pass.* A fresh-palate judge that tastes the
+  *real diff* and executes the acceptance criteria. Approves, or sends the
+  dish back to the *same* cook (context preserved) for up to 2 refires.
+- ✅ **The Head, again** — *service.* Final end-to-end check: build, test,
+  integrate, clean the kitchen.
 
 ```
 USAGE:   /rehoboam <task to build>
@@ -65,10 +74,17 @@ you ─── /rehoboam "add rate limiting to the API"
 
 Big tasks fail in single-agent runs for two boring reasons: the context
 window fills up with implementation noise, and the model grades its own
-homework. Rehoboam splits the two problems apart — planning and building
-happen in different contexts, and review happens in a context that has seen
-*nothing* except the brief and the diff. The reviewer can't be charmed by
-the executor's self-report, because it never reads it.
+homework. It's the one-man kitchen problem — the same person invents the
+menu, cooks every course, *and* reviews the restaurant. Rehoboam splits the
+roles apart: planning and building happen in different contexts, and review
+happens in a context that has seen *nothing* except the brief and the diff.
+The pass can't be charmed by the cook's story about the dish, because it
+never hears it — it only tastes the plate.
+
+There's a cost angle too: paying frontier-model prices to have your
+strongest model grep through boilerplate is paying the executive chef to
+wash dishes. With Rehoboam the head thinks once, briefly, at chef prices —
+and the volume work runs on brigade-priced models.
 
 ## Install
 
@@ -173,7 +189,9 @@ rehoboam/
 
 ## License
 
-[MIT](LICENSE) — Giorgio Gramegna.
+[MIT](LICENSE) — cooked by [Giorgio Gramegna](https://github.com/itboy79),
+the Crypto Chef. **Cook the code. Ship the dish.** 👨‍🍳
 
 *Not affiliated with HBO or Westworld. Rehoboam just really liked the
-aesthetic of knowing what everyone will do next.*
+aesthetic of knowing what everyone will do next — like any chef ten minutes
+before service.*
