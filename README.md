@@ -74,10 +74,10 @@ the executor's self-report, because it never reads it.
 
 ```bash
 # personal skills (available in every project)
-git clone https://github.com/YOUR_USERNAME/rehoboam.git ~/.claude/skills/rehoboam
+git clone https://github.com/itboy79/rehoboam.git ~/.claude/skills/rehoboam
 
 # — or — project-level (committed with the repo)
-git clone https://github.com/YOUR_USERNAME/rehoboam.git .claude/skills/rehoboam
+git clone https://github.com/itboy79/rehoboam.git .claude/skills/rehoboam
 ```
 
 Or run the installer, which does the first form and verifies python3:
