@@ -7,6 +7,7 @@
   <img alt="Python" src="https://img.shields.io/badge/python-3.9%2B-e8b45a.svg">
   <img alt="Claude Code Skill" src="https://img.shields.io/badge/claude--code-skill-f3efe7.svg">
   <img alt="Providers" src="https://img.shields.io/badge/providers-anthropic%20%7C%20openai%20%7C%20ollama-6b6154.svg">
+  <a href="https://github.com/itboy79/cerebro"><img alt="sibling of Cerebro" src="https://img.shields.io/badge/sibling%20of-Cerebro-8F5BFF.svg"></a>
 </p>
 
 # Brigade
@@ -102,6 +103,32 @@ and the volume work runs on brigade-priced models.
 | Refire        | A revision round (max 2, same cook)       |
 | 86'd          | Escalated to the user                     |
 | Service       | The final end-to-end check + integration  |
+
+## Brigade & Cerebro — the kitchen and its cookbook
+
+Brigade has a sibling: **[Cerebro](https://github.com/itboy79/cerebro)**,
+a model-agnostic skill that scans your whole repo and writes a Karpathy-style
+**wiki-OS** — numbered, LLM-first markdown pages that become the project's
+single source of truth. Where Brigade is the *kitchen*, Cerebro is the
+*cookbook*: the standing reference every cook is expected to know before
+service.
+
+They compose in both directions, and neither requires the other:
+
+- **Cerebro → Brigade.** On a big job, Cerebro's scan can delegate per-module
+  chunks to Brigade's cooks and review their drafts before committing a page
+  — the brigade does the prep, one mind writes the recipes.
+- **Brigade → Cerebro.** When a repo has a `wiki/`, the chef reads it as
+  *mise en place* before writing tickets (conventions, architecture, the
+  DO-NOT list come free), each ticket cites the wiki pages in scope, and
+  **service isn't done until the wiki is synced** — Cerebro's Second Law
+  (*no task ends without a sync*) becomes part of closing the kitchen. Any
+  gap between what a cook shipped and what the wiki claims surfaces as
+  **drift**, never a silent patch.
+
+If Cerebro is installed in the repo, Brigade uses it automatically for both
+the pre-service read and the post-service sync. If it isn't, Brigade runs
+exactly as before — the pairing is a force multiplier, never a dependency.
 
 ## Install
 
@@ -215,3 +242,8 @@ the Crypto Chef. **Cook the code. Ship the dish.** 👨‍🍳
 
 *Escoffier invented multi-agent orchestration in 1903. We just added git
 worktrees.*
+
+---
+
+Built by [MiraiLab](https://mirailab.it) · sibling of
+[Cerebro](https://github.com/itboy79/cerebro) · MIT

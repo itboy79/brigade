@@ -20,6 +20,11 @@ Glossary (kitchen → engineering): ticket = brief/sub-task · station = git
 worktree · refire = revision round · 86'd = escalated to the user ·
 service = final e2e check.
 
+Sibling skill: [Cerebro](https://github.com/itboy79/cerebro) is the cookbook
+to Brigade's kitchen — it writes and maintains the repo's `wiki/` (the wiki-OS
+source of truth). When present, the chef reads it before writing tickets and
+syncs it at service. Brigade never requires it.
+
 ```
 USAGE:   /brigade <task to build>
 ```
@@ -72,6 +77,10 @@ The chef is you, running on the session's model. Rules of the chef:
 
 1. **Scout the kitchen read-only.** Map the areas the task touches: entry
    points, existing patterns, test setup, build commands. Do not write code.
+   **If the repo has a `wiki/` (a Cerebro wiki-OS), read `wiki/00-INDEX.md`
+   first and treat it as mise en place** — conventions, architecture, and the
+   DO-NOT list come from there instead of being re-derived. It's the source
+   of truth; code tells you what *is*, the wiki what *should be*.
 2. **Write the tickets.** Split the task into tickets, each independently
    fireable by a cook with zero conversation context. Aim for tickets that
    touch disjoint files; where overlap is unavoidable, mark the tickets as
@@ -86,7 +95,8 @@ The chef is you, running on the session's model. Rules of the chef:
 # TICKET <n>: <title>
 ## Context
 <what the repo is, where relevant code lives, patterns to follow — assume
-the cook has never seen this kitchen>
+the cook has never seen this kitchen. If a Cerebro wiki-OS exists, cite the
+relevant `wiki/NN-*.md` pages here so the cook inherits the standing truth>
 ## Task
 <precise, bounded instructions>
 ## Files in scope
@@ -152,6 +162,12 @@ Once every ticket is approved:
    integration fix, which the chef may do and must declare in the summary.
 3. Clean the kitchen: `git worktree remove` each station + delete merged
    `brigade/station-*` branches.
+4. **Sync the cookbook.** If the repo has a Cerebro wiki-OS, service isn't
+   done until the wiki reflects what shipped — run Cerebro's sync (or update
+   the affected `wiki/NN-*.md` pages in the same commit as the code). Surface
+   any gap between the shipped diff and the wiki's claims as **drift** for
+   the user to resolve; never paper over it silently. If Cerebro isn't
+   installed, skip this step.
 
 ## Step 6 — Summary to the user
 
